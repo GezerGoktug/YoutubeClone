@@ -1,21 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { options } from "../../constants/apiSettings";
+import api from "../../utils/api";
 
 //! Videoları getirmek için asenkron işlem
 export const getVideos = createAsyncThunk("getVideos", async ({ category }) => {
-  const newOptions = {
-    ...options,
-    url: `https://yt-api.p.rapidapi.com/${
+  const { data } = await api.get(
+    `${
       category
         ? category === "trending"
           ? category
           : `hashtag?tag=` + category
         : "home"
-    }`,
-  };
-
-  const { data } = await axios.request(newOptions);
+    }`
+  );
   const newVideos = data.data.filter((video) => video.type === "video");
   return newVideos;
 });
@@ -24,14 +20,7 @@ export const getVideos = createAsyncThunk("getVideos", async ({ category }) => {
 export const searchVideos = createAsyncThunk(
   "getSearchVideos",
   async ({ query }) => {
-    const newOptions = {
-      ...options,
-      url: `https://yt-api.p.rapidapi.com/search`,
-      params: {
-        query: query,
-      },
-    };
-    const { data } = await axios.request(newOptions);
+    const { data } = await api.get(`search?query=${query}`);
     const newVideos = data.data.filter((video) => video.type === "video");
     return newVideos;
   }
@@ -41,23 +30,10 @@ export const searchVideos = createAsyncThunk(
 export const getVideoDetail = createAsyncThunk(
   "getVideoDetail",
   async ({ id }) => {
-    const newOptions = {
-      ...options,
-      url: `https://yt-api.p.rapidapi.com/video/info`,
-      params: {
-        id: id,
-        extend: 1,
-      },
-    };
     //! Video detaylarını almak için API isteği yap
-    const { data: videoİnfo } = await axios.request(newOptions);
-    //! Yorumları almak için ayarları güncelle
-    const updatedOptions = {
-      ...newOptions,
-      url: "https://yt-api.p.rapidapi.com/comments",
-    };
+    const { data: videoİnfo } = await api.get(`/video/info?id=${id}&extend=1`);
     //! Yorumları almak için API isteği yap
-    const { data: comments } = await axios.request(updatedOptions);
+    const { data: comments } = await api.get(`/comments?id=${id}`);
     //! Video detayları ve yorumları döndür
     return { videoİnfo, comments };
   }
