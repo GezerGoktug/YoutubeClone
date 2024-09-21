@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom";
 import CommentCard from "../components/UI/CommentCard";
-import Comments from "../components/layout/VideoDetail/Comments";
-import Video from "../components/layout/VideoDetail/Video";
+import Comments from "../components/VideoDetail/Comments";
+import Video from "../components/VideoDetail/Video";
 import VideoCard from "../components/UI/VideoCard";
-import VideoDetail from "../components/layout/VideoDetail/VideoDetail";
+import VideoDetail from "../components/VideoDetail/VideoDetail";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideoDetail } from "../redux/actions/videosAction";
 import VideoSkeletonCard from "../components/UI/VideoSkeletonCard";
-import Loader from "../components/layout/Loader";
+import Loader from "../components/VideoDetail/Loader";
 import { types } from "../constants/types";
 
 const Details = () => {

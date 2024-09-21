@@ -30,10 +30,11 @@ export const searchVideos = createAsyncThunk(
 export const getVideoDetail = createAsyncThunk(
   "getVideoDetail",
   async ({ id }) => {
-    //! Video detaylarını almak için API isteği yap
-    const { data: videoİnfo } = await api.get(`/video/info?id=${id}&extend=1`);
-    //! Yorumları almak için API isteği yap
-    const { data: comments } = await api.get(`/comments?id=${id}`);
+    //! Video detaylarını ve yorumları almak için API isteği yap
+    const [{ data: videoİnfo }, { data: comments }] = await Promise.all([
+      api.get(`/video/info?id=${id}&extend=1`),
+      api.get(`/comments?id=${id}`),
+    ]);
     //! Video detayları ve yorumları döndür
     return { videoİnfo, comments };
   }

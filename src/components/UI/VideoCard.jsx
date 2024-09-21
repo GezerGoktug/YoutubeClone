@@ -41,7 +41,7 @@ const VideoCard = ({ type, videoİnfo }) => {
                   ? channelThumbnail[0].url
                   : "/img/defaultprofile.png"
               }
-              alt={title}
+              alt={channelTitle}
             />
             <div className=" flex flex-col ">
               <h2 className="font-medium text-lg ">{title}</h2>

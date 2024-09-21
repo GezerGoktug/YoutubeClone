@@ -15,7 +15,7 @@ const CommentCard = ({ comment }) => {
   return (
     <div className="flex gap-4 items-start">
       <img
-        className="h-12 min-w-12 bg-zinc-700 rounded-full"
+        className="size-12 bg-zinc-700 rounded-full"
         src={authorThumbnail[0].url}
         alt={authorText}
       />

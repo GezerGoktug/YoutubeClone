@@ -1,4 +1,4 @@
-import { icons } from "../../../constants/icons";
+import { icons } from "../../constants/icons";
 import millify from "millify";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
