@@ -14,7 +14,7 @@
 <li>React Redux</li>  
 <li>Redux Toolkit</li>  
 <li>Redux Thunk</li>  
-<li>Redux Router DOM</li>
+<li>React Router DOM</li>
 <li>Millify</li>
 <li>Flowbite React</li>
 <li>Day js</li>
