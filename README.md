@@ -99,7 +99,7 @@ npm install
 4.**Start the application**
 
 ```
-npm start
+npm run dev
 ```
 
 5.**Show in browser**
